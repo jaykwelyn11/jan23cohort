@@ -1,0 +1,181 @@
+.flexrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+body {
+    .flexcolumn();
+    width: 95%;
+
+    header {
+        .flexrow;
+        width: 95%; 
+
+        nav {
+            .flexrow;
+            width: 95%;
+            font-size: 2em;
+            justify-content: space-around;
+        }
+
+    }
+
+    main {
+        .flexcolumn;
+
+        .mainH1 {
+            font-size: 4em;
+            padding: 50px 0px 0px 0px;
+        }
+
+        h2 .leftMiddleColumn{
+            .flexcolumn;
+            margin: 0px;
+            padding: 6px 0px 0px 0px;
+        }
+
+        .mainRow {
+            .flexrow;
+            width: 80%;
+        }
+
+        .mainRow img{
+            width: 200px;
+        }
+
+        .leftMiddleColumn {
+            .flexcolumn;
+            padding: 10px 50px;
+        }
+
+        .rightColumnMain {
+            .flexcolumn;
+            padding: 10px 20px 20px 60px;
+            margin: 20px;
+        }
+
+        .containerColumn {
+            .flexcolumn;
+            width: 70%;
+        }
+
+        .rowMain {
+            .flexrow;
+        }
+
+        .p1 {
+            .flexrow;
+            margin: 20px;
+        }
+
+        .p2 {
+            .flexrow;
+            margin: 20px;
+        }
+
+        .p3 {
+            .flexrow;
+            margin: 20px;
+        }
+
+        .text1 {
+            .flexcolumn;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 10px;
+        }
+
+        .text2 {
+            .flexcolumn;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 10px;
+        }
+
+        .text3 {
+            .flexcolumn;
+            align-items: flex-start;
+            justify-content: flex-start;
+            padding: 10px;
+        }
+
+        h2 .text1 {
+            .flexcolumn;
+            justify-content: flex-start;
+        }
+
+        .containerColumn img{
+            width: 200px;
+        }
+
+        .projectsH1 {
+            font-size: 4em;
+            padding: 50px 0px 0px 0px;
+        }
+
+        .contactH1 {
+            font-size: 4em;
+            padding: 50px 0px 0px 0px;
+        }
+
+        .mainColumn {
+            .flexcolumn;
+        }
+
+        form {
+            .flexcolumn;
+        }
+
+        .name {
+            .flexrow;
+            font-size: 20px;
+        }
+
+        #name {
+            padding: 8px;
+            margin: 10px 10px 10px 20px;
+            width: 150px;
+        }
+
+        .email {
+            .flexrow;
+            font-size: 20px;
+        }
+
+        #email {
+            padding: 8px;
+            margin: 10px 10px 10px 20px;
+            width: 150px;
+        }
+
+        .messages {
+            .flexrow;
+            font-size: 20px;
+        }
+
+        #message {
+            padding: 20px 10px 20px 10px;
+            margin: 10px 25px 10px 21px;
+            width: 150px;
+            height: 50px;
+        }
+
+        button {
+            .flexrow;
+            justify-content: flex-end;
+            margin: 0px 0px 0px 260px;
+        }
+
+    }
+
+    
+}

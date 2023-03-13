@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Generate Passcode";
+}
+
+
+<div class="container d-flex flex-column justify-content-center align-items-center mt-5 h-100">
+    <h1>Random Passcode #@Model</h1>
+    <div class="card mt-4">
+        <div class="card-body">
+            @{
+                string values = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                char[] Arr = new char[14];
+                Random rand = new Random();
+                for (int i = 0; i < Arr.Length; i++)
+                {
+                    Arr[i] = values[rand.Next(values.Length)];
+                }
+                string passcode = new string(Arr);
+                <h1>@passcode</h1>
+            }
+        </div>
+    </div>
+    <form asp-action="Generate" asp-controller="Home" method="POST">
+        <button>Generate</button>
+    </form>
+</div>

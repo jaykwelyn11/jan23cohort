@@ -1,0 +1,62 @@
+@{
+    ViewData["Title"] = "Weddings";
+}
+
+<nav>
+    <h1 class="mainTitle"><a href="/weddings">Welcome @Context.Session.GetString("FirstName")!</a></h1>
+    <a asp-area="" asp-controller="Wedding" asp-action="All">Home</a>
+    <a asp-area="" asp-controller="Wedding" asp-action="New">Plan a Wedding</a>
+    <a asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+</nav>
+<hr class="line">
+
+@model List<Wedding>
+
+<table class="table text-center">
+    <thead>
+        <tr>
+            <th scope="col">Wedding of</th>
+            <th scope="col">Date</th>
+            <th scope="col">Guest Count</th>
+            <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (Wedding w in Model)
+            {
+                DateTime WeddingDate = w.EventDate;
+                bool alreadySignedup = w.Guests.Any(w => w.UserId == Context.Session.GetInt32("uid"));
+                bool isCreator = w.Creator.UserId == Context.Session.GetInt32("uid");
+                <tr>
+                    <td><span><a href="/weddings/@w.WeddingId">@w.WedderOne &
+                                @w.WedderTwo</a></span></td>
+                    <td>@Html.Label(string.Format("{0:dddd, MMMM d, yyyy}", WeddingDate))</td>
+                    @* <td>@UserWeddingRSVP.Count</td> *@
+                    <td>@w.Guests.Count</td>
+                    <td>
+                        @if (w.UserId == @Context.Session.GetInt32("uid"))
+                        {
+                            <a href="/weddings/edit/@w.WeddingId">Edit</a>
+                            <a href="/weddings/delete/@w.WeddingId">Delete</a>
+                        }
+
+
+                        <a href="@w.WeddingId/rsvp"><button class="btn btn-link">
+                                @if (alreadySignedup)
+                                {
+                                    <span>Un-RSVP</span>
+                                }
+                                else
+                                {
+                                    <span>RSVP</span>
+                                }
+                            </button></a>
+
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

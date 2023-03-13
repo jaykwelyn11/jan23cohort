@@ -1,0 +1,37 @@
+﻿@{
+    ViewData["Title"] = "User";
+}
+
+
+@model User
+    <form class="text-center" action="regUser" method="post">        
+        <label asp-for="Name">Name:</label>    
+        <input asp-for="Name">
+        <span asp-validation-for="Name"></span>
+
+
+        <label asp-for="Location">Dojo Location:</label>    
+        <select asp-for="Location" id=""> 
+        <option value="San Jose">San Jose</option>
+        <option value="Dallas">Dallas</option>
+        </select>
+        <span asp-validation-for="Location"></span>
+
+
+        <label asp-for="FavLang">Favorite Language:</label>
+        <select asp-for="FavLang" id=""> 
+        <option value="C#">C#</option>
+        <option value="JavaScript">JavaScript</option>
+        </select>
+        <span asp-validation-for="FavLang"></span>
+
+
+        <span asp-validation-for="Comment"></span>
+        <label asp-for="Comment">Comment:</label>
+        <textarea asp-for="Comment" id="" cols="23" rows="3"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+
+
+</html>

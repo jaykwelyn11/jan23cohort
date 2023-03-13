@@ -1,0 +1,47 @@
+@{
+    ViewData["Title"] = "Weddings";
+}
+
+@model Wedding
+
+<nav>
+    <h1 class="mainTitle"><a href="/weddings">Welcome @Context.Session.GetString("Name"!)</a></h1>
+    <a asp-area="" asp-controller="Wedding" asp-action="All">Home</a>
+    <a asp-area="" asp-controller="Wedding" asp-action="New">Plan a Wedding</a>
+    <a asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+</nav>
+<hr class="line">
+
+<h1>Plan a Wedding</h1>
+
+<div class="container w-75 mx-auto">
+
+
+    <form class="shadow p-3 rounded" asp-controller="Wedding" asp-action="CreateWedding" method="Post">
+
+        <div class="mb-3">
+            <label asp-for="WedderOne">Wedder One:</label>
+            <span asp-validation-for="WedderOne" class="text-danger font-weight-bold"></span>
+            <input class="form-control" asp-for="WedderOne">
+        </div>
+        <div class="mb-3">
+            <label asp-for="WedderTwo">Wedder Two:</label>
+            <span asp-validation-for="WedderTwo" class="text-danger font-weight-bold"></span>
+            <input class="form-control" asp-for="WedderTwo">
+        </div>
+        <div class="mb-3">
+            <label asp-for="EventDate"></label>
+            <span asp-validation-for="EventDate" class="text-danger font-weight-bold"></span>
+            <input class="form-control" asp-for="EventDate">
+        </div>
+        <div class="mb-3">
+            <label asp-for="Address"></label>
+            <span asp-validation-for="Address" class="text-danger font-weight-bold"></span>
+            <input class="form-control" asp-for="Address">
+        </div>
+
+        <button class="btn btn-success">Create</button>
+    </form>
+
+
+</div>

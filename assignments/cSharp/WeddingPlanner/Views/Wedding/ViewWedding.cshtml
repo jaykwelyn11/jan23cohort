@@ -1,0 +1,35 @@
+@{
+    ViewData["Title"] = "Weddings";
+}
+
+<nav>
+    <h1 class="mainTitle"><a href="/weddings">Welcome @Context.Session.GetString("Name"!)</a></h1>
+    <a asp-area="" asp-controller="Wedding" asp-action="All">Home</a>
+    <a asp-area="" asp-controller="Wedding" asp-action="New">Plan a Wedding</a>
+    <a asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+</nav>
+<hr class="line">
+
+@model Wedding
+
+<h1>@Model.WedderOne & @Model.WedderTwo's wedding</h1>
+
+<h2>Event Date: @Html.Label(string.Format("{0:dddd, MMMM d, yyyy}", @Model.EventDate))</h2>
+
+<h2>Address: @Model.Address</h2>
+
+<h2>Guests:</h2>
+
+@foreach (Rsvp r in Model.Guests)
+{
+    <h4>@r.User.FullName()</h4>
+}
+
+@{
+    bool isCreator = Model.Creator.UserId == Context.Session.GetInt32("UUID");
+}
+
+@if (isCreator)
+{
+    <a asp-controller="Wedding" asp-action="Edit" asp-route-id="@Model.WeddingId">Edit Wedding</a>
+}
