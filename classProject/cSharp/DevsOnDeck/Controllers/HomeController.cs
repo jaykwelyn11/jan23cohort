@@ -82,10 +82,18 @@ public class HomeController : Controller
         HttpContext.Session.SetInt32("level", newUser.AccessLevel);
         HttpContext.Session.SetString("type", "Gen");
         HttpContext.Session.SetString("role", newUser.AccessType);
+        if(newUser.UserId == 1) {
+            newUser.AccessLevel = 24;
+            newUser.AccessType = "SuperAdmin";
+            db.Users.Update(newUser);
+            db.SaveChanges();
+            return RedirectToAction("AdminDash", "Admin");
+        }
         return RedirectToAction("Dashboard");
     }
     [HttpPost("/login")]
     public IActionResult Login(Login getUser) {
+        Console.WriteLine("====================================== login function entry");
         if(!ModelState.IsValid) {
             return View("LogReg");
         } else {
@@ -105,6 +113,15 @@ public class HomeController : Controller
                     HttpContext.Session.SetInt32("level", userInDb.AccessLevel);
                     HttpContext.Session.SetString("type", "Gen");
                     HttpContext.Session.SetString("role", userInDb.AccessType);
+                    Console.WriteLine($"==================********************** What access level am I? {userInDb.AccessLevel}");
+                    if(userInDb.AccessLevel > 20) {
+                        Console.WriteLine("********************************************** what the F and you getting this?");
+                        userInDb.AccessType = "Admin";
+                        db.Users.Update(userInDb);
+                        db.SaveChanges();
+                        // return RedirectToAction("AdminDash", "Admin");
+                        return Redirect("/Admin/Dashboard");
+                    }
                     return RedirectToAction("Dashboard");
                 }
             }   
@@ -123,43 +140,7 @@ public class HomeController : Controller
     public IActionResult Dashboard() {
         User? theUser = db.Users.FirstOrDefault(u => uid == u.UserId);
         // Console.WriteLine($"uid: {uid}, userId {theUser.UserId}, accessLevel: {theUser.AccessLevel}");
-        if(uid == 1 && theUser.AccessLevel == 1) {
-            theUser.AccessLevel = 24;
-            theUser.AccessType = "SuperAdmin";
-            db.Users.Update(theUser);
-            db.SaveChanges();
-            HttpContext.Session.SetString("role", theUser.AccessType);
-            ViewBag.Access = "Access updated to SuperAdmin";
-            return View("AdminDash", "Admin");
-        }
-        else if(theUser.AccessLevel == 24) {
-            theUser.AccessType = "SuperAdmin";
-            db.Users.Update(theUser);
-            db.SaveChanges();
-            HttpContext.Session.SetString("role", theUser.AccessType);
-            ViewBag.Access = "Welcome back Super Admin";
-            return View("AdminDash", "Admin");
-        }
-        // User? dev = db.Users
-        //     .Include(d => d.myDev)
-        //     .FirstOrDefault(d => d.UserId == uid);
-        //     // .ToList();
-        // if(dev.myDev == null) {
-        //     Console.WriteLine($"dev: {dev.myDev}, mydevId");
-        // } else {
-        //     Console.WriteLine($"not null");
-        // }
-        else if(theUser.AccessLevel == 22) {
-            theUser.AccessType = "Admin";
-            db.Users.Update(theUser);
-            db.SaveChanges();
-            HttpContext.Session.SetString("role", theUser.AccessType);
-            ViewBag.Access = "Welcome back Admin User";
-            return View("AdminDash", "Admin");
-        }
-        // else if(theUser.AccessLevel > 10) {
-        //     theUser.AccessType = "Org"
-        // }
+
         return View("Dashboard");
     }
     [SessionCheck]

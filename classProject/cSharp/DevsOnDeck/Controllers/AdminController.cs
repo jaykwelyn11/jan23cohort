@@ -43,11 +43,30 @@ public class AdminController: Controller
     
     [AdminCheck]
     [SessionCheck]
-    [HttpPost("/Admin/Dashboard")]
+    [HttpGet("/Admin/Dashboard")]
     public IActionResult AdminDash() {
-        HttpContext.Session.SetString("type", "Admin");
-        return View("AdminDash");
+        if(level == 24) {
+            HttpContext.Session.SetString("type", "Super Admin");
+        } else {
+            HttpContext.Session.SetString("type", "Admin");
+        }
+        
+        return View("AdminDash", "Admin");
     }
+    [AdminCheck]
+    [SessionCheck]
+    [HttpGet("/Admin/Users")]
+    public IActionResult AllUsers() {
+        List<User> allUsers = db.Users
+        .ToList();
+        return View("AllUsers", allUsers);
+    }
+    // [AdminCheck]
+    // [SessionCheck]
+    // [HttpPost("/Admin/Dashboard/MakeSuper")]
+    // public IActionResult MakeSuper() {
+        
+    // }
 // *** Make Super Admin
 // *** Make Admin
 // *** Create Org code
