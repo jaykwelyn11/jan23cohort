@@ -1,0 +1,17 @@
+table {
+	background-color: pink;
+	border: 3px;
+	padding: 30px;
+	margin: 30px;
+}
+
+th {
+	font-size: 50px;
+	padding:20px;
+}
+
+td {
+	font-size: 30px;
+	padding: 10px;
+}
+
