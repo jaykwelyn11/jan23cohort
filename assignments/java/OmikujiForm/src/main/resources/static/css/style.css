@@ -1,0 +1,24 @@
+@charset "ISO-8859-1";
+
+main {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.omikuji{
+	border: 4px solid black;
+	background-color: lightblue;
+	height: 700px;
+	width: 400px;
+	margin: 10px 50px 10px 50px;
+	font-size: 40px;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
