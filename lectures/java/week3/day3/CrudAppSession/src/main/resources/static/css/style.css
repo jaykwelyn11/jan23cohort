@@ -39,20 +39,34 @@ body main {
   margin: 1em;
   padding: 1em;
 }
-body main table {
+body main .row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+body main .row .column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+body main .row .column table {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: bisque;
 }
-body main table td img {
-  max-width: 250px;
+body main .row .column table td img {
+  max-width: 200px;
 }
-body main table,
-body main tr,
-body main th,
-body main td {
+body main .row .column table,
+body main .row .column tr,
+body main .row .column th,
+body main .row .column td {
   border: black 2px solid;
   padding: 0.5em;
 }

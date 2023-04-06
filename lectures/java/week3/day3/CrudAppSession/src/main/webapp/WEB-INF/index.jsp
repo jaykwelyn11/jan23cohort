@@ -10,7 +10,7 @@
 <html>
 <head>
 <!-- for Bootstrap CSS -->
-<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> -->
 <!-- YOUR own local CSS -->
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <!-- For any Bootstrap that uses JS -->
@@ -40,22 +40,46 @@
 		</nav>
 	</header>
 	<main>
-		<table>
-			<tr>
-				<th>Sticker Id</th>
-				<th>Sticker Category</th>
-				<th>Sticker Image</th>
-				<th>Actions</th>
-			</tr>
-			<c:forEach items="${ allStickers }" var="s">
-				<tr>
-					<td>${ s.id }</td>
-					<td>${ s.cat.name }</td>
-					<td><img src="${ s.url }" alt="${ s.name }" /></td>
-					<td><a href="/sticker/${ s.id }/view">View</a> | <a href="/sticker/${ s.id }/edit">Edit</a> | <a href="/sticker/${ s.id }/delete">Delete</a></td>
-				</tr>
-			</c:forEach>
-		</table>
+		<div class="row">
+			<div class="column">
+				<h2>The Stickers</h2>
+				<table>
+					<tr>
+						<th>Sticker Id</th>
+						<th>Sticker Category</th>
+						<th>Sticker Image</th>
+						<th>Actions</th>
+					</tr>
+					<c:forEach items="${ allStickers }" var="s">
+						<tr>
+							<td>${ s.id }</td>
+							<td>${ s.cat.name }</td>
+							<td><img src="${ s.url }" alt="${ s.name }" /></td>
+							<td><a href="/sticker/${ s.id }/view">View</a> | <a href="/sticker/${ s.id }/edit">Edit</a> | <a href="/sticker/${ s.id }/delete">Delete</a></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+			<div class="column">
+				<h2>The Categories</h2>
+				<table>
+					<tr>
+						<th>Category Id</th>
+						<th>Category Name</th>
+						<th>Sticker Count</th>
+						<th>Actions</th>
+					</tr>
+					<c:forEach items="${ allCats }" var="c">
+						<tr>
+							<td>${ c.id }</td>
+							<td>${ c.name }</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</c:forEach>
+				</table>
+			</div>
+		</div>
 	</main>
 	<footer>
 		<h3>Stickers and Categories</h3>

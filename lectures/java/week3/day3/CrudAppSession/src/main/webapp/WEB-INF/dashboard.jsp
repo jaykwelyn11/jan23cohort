@@ -10,7 +10,7 @@
 <html>
 <head>
 <!-- for Bootstrap CSS -->
-<link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+<!-- <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" /> -->
 <!-- YOUR own local CSS -->
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 <!-- For any Bootstrap that uses JS -->
@@ -33,6 +33,11 @@
 	</main>
 	<footer>
 		<h3>Stickers and Categories</h3>
+		<c:forEach items="${ allStickers }" var="s">
+			<c:if test="${ s.cat.id == aCat.id}">
+				<li>${ s.name }</li>
+			</c:if>
+		</c:forEach>
 	</footer>
 </body>
 </html>

@@ -42,7 +42,8 @@ public class HomeController {
 	public String dashboard(HttpSession session, Model model) {
 		if(session.getAttribute("cat") == null) {
 			return "redirect:/";
-		}
+		} 
+		model.addAttribute("allStickers", stickerServ.getAll());
 		model.addAttribute("aCat", catServ.getOne((Long)session.getAttribute("cat")));
 		return "dashboard.jsp";
 	}
